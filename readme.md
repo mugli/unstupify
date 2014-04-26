@@ -1,5 +1,5 @@
 #Unstupify
-###Chrome extension for hiding Priyo.com posts from Facebook
+###Chrome extension for hiding Priyo.com posts on Facebook
 
 ---
 
