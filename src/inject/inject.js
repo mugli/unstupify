@@ -32,10 +32,16 @@ var fuckOff = function(){
   if (tlDishes.length) sterilizeAll(tlDishes);
 };
 
-var doctocat = new WebKitMutationObserver(function(mutations) {
-   for (var i = 0; i < mutations.length; i++){
-     if (mutations[i].addedNodes.length) fuckOff();
-   }
+var _MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+var doctocat = new _MutationObserver(function(mutations) {
+  var nodesAdded = false;
+  for (var i = 0; i < mutations.length; i++){
+    if (mutations[i].addedNodes.length) {
+       nodesAdded = true;
+       break;
+    }
+  }
+  if (nodesAdded) fuckOff();
 });
 doctocat.observe(document, { childList: true, subtree: true, characterData:false });
 
