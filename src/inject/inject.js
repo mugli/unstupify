@@ -11,9 +11,14 @@ var sterilize = function(petridish){
     if (petridish.querySelector(marker)) {
       //Contaminated
       petridish.remove();
-    } else if (!!petridish.textContent && (petridish.textContent.indexOf(bacterium) > -1)){
-      //Contaminated
-      petridish.remove();
+    } else {
+      if (!!petridish.textContent){
+        var textContent = normalize(petridish.textContent);
+        if (textContent.indexOf(bacterium) > -1){
+          //Contaminated
+          petridish.remove();
+        }
+      }
     }
   }
 };
@@ -21,6 +26,23 @@ var sterilize = function(petridish){
 var sterilizeAll = function (petridishes){
   for (var i = 0, num = petridishes.length; i < num; i++){
     sterilize(petridishes[i]);
+  }
+};
+
+//Normalization objects (For Bangla only)
+var regex1 = new RegExp(String.fromCharCode(2479,2492), "g"), char1 = String.fromCharCode(2527);
+var regex2 = new RegExp(String.fromCharCode(2465,2492), "g"), char2 = String.fromCharCode(2524);
+var regex3 = new RegExp(String.fromCharCode(2466,2492), "g"), char3 = String.fromCharCode(2525);
+
+var normalize = function(s){
+  if (!!s){
+    return s.replace(regex1, char1).replace(regex2, char2).replace(regex3, char3);
+  }
+};
+
+var normalizeKeywords = function(){
+  for (var i = 0; i < filthyBacteria.length; i++){
+    filthyBacteria[i] = normalize(filthyBacteria[i]);
   }
 };
 
@@ -43,6 +65,11 @@ var doctocat = new _MutationObserver(function(mutations) {
   }
   if (nodesAdded) fuckOff();
 });
-doctocat.observe(document, { childList: true, subtree: true, characterData:false });
 
-fuckOff();
+var runMoron = function(){
+  normalizeKeywords();
+  fuckOff();
+  doctocat.observe(document, { childList: true, subtree: true, characterData:false });
+};
+
+runMoron();
