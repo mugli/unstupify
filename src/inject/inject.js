@@ -66,10 +66,10 @@ var doctocat = new _MutationObserver(function(mutations) {
   if (nodesAdded) fuckOff();
 });
 
-var runMoron = function(){
+var unstupify = function(){
   normalizeKeywords();
   fuckOff();
   doctocat.observe(document, { childList: true, subtree: true, characterData:false });
 };
 
-runMoron();
+unstupify();
