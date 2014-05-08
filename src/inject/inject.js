@@ -1,5 +1,5 @@
 //Nobody wants them
-var filthyBacteria = ["priyo.com", "প্রিয়.কম"];
+var filthyBacteria = ["priyo.com", "প্রিয়.কম", "prothombarta.com", "প্রথম বার্তা.কম"];
 
 var feedMarker = "div._4-u2._5v3q";
 var timeLineMarker = "li.fbTimelineUnit";
